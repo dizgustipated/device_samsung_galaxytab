@@ -22,6 +22,7 @@ PRODUCT_COPY_FILES := \
 
 # Init files
 PRODUCT_COPY_FILES += \
+	device/samsung/galaxytab/init.rc:root/init.rc \
         device/samsung/galaxytab/init.smdkc110.rc:root/init.smdkc110.rc \
 	device/samsung/galaxytab/init.s5pc110.rc:root/init.s5pc110.rc \
 	device/samsung/galaxytab/init.s5pc110.usb.rc:root/init.s5pc110.usb.rc \
