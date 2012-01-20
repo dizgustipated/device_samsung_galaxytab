@@ -31,8 +31,8 @@ on boot
 # Include extra init file
     import /device.rc
 
-    setprop ro.build.product vzwtab
-    setprop ro.product.device vzwtab
+    setprop ro.build.product galaxytab
+    setprop ro.product.device galaxytab
     setprop ro.radio.noril yes
 
 # fake some battery state
