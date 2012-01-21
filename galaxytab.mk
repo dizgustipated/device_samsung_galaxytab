@@ -115,10 +115,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
        ro.telephony.call_ring.multiple=true \
        ro.telephony.call_ring.delay=1000 \
        ro.telephony.call_ring.absent=true \
-       ro.telephony.ril_class=samsung \
-       mobiledata.interfaces=pdp0,eth0,gprs,ppp0 \
-       phone.ril.classname=com.android.internal.telephony.SamsungRIL \
-       ro.telephony.ril.v3=1 \
+       mobiledata.interfaces=eth0,pdp0 \
+       ro.telephony.ril.v3=datacall,icccardstatus \
        ro.ril.enable.managed.roaming=1 \
        ro.ril.oem.nosim.ecclist=911,112,999,000,08,118,120,122,110,119,995 \
        ro.ril.emc.mode=2 \
@@ -151,27 +149,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Note that the only such settings should be the ones that are too low-level to
 # be reachable from resources or other mechanisms.
 PRODUCT_PROPERTY_OVERRIDES += \
-       wifi.supplicant_scan_interval=45 \
-       net.ipv4.tcp_ecn=0 \
-       net.ipv4.route.flush=1 \
-       net.ipv4.tcp_rfc1337=1 \
-       net.ipv4.ip_no_pmtu_disc=0 \
-       net.ipv4.tcp_sack=1 \
-       net.ipv4.tcp_fack=1 \
-       net.ipv4.tcp_window_scaling=1 \
-       net.ipv4.tcp_timestamps=1 \
-       net.ipv4.tcp_rmem=4096_39000_187000 \
-       net.ipv4.tcp_wmem=4096_39000_187000 \
-       net.ipv4.tcp_mem=187000_187000_187000 \
-       net.ipv4.tcp_no_metrics_save=1 \
-       net.ipv4.tcp_moderate_rcvbuf=1
+       wifi.supplicant_scan_interval=45
 
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
 PRODUCT_PROPERTY_OVERRIDES += \
         ro.com.google.locationfeatures=1 \
-        ro.com.google.networklocation=1 \
-        ro.com.google.gmsversion=2.2_r5
+        ro.com.google.networklocation=1
 
 # Extended JNI checks
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
