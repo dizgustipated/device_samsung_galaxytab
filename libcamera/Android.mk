@@ -1,4 +1,4 @@
-ifeq ($(TARGET_DEVICE),vzwtab)
+ifeq ($(TARGET_DEVICE),galaxytab)
 
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
@@ -11,7 +11,9 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/../include
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../libs3cjpeg
 
 LOCAL_SRC_FILES:= \
-	SecCamera.cpp SecCameraHWInterface.cpp
+	SecCamera.cpp \
+	SecCameraHWInterface.cpp \
+	SecCameraUtils.cpp
 
 LOCAL_SHARED_LIBRARIES:= libutils libcutils libbinder liblog libcamera_client libhardware
 LOCAL_SHARED_LIBRARIES+= libs3cjpeg

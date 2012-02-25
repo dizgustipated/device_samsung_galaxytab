@@ -41,10 +41,10 @@ TARGET_GLOBAL_CPPFLAGS += -mtune=cortex-a8 -mfpu=neon -mfloat-abi=softfp
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 TARGET_NO_BOOTLOADER := true
-TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_NO_RADIOIMAGE := true
 
 TARGET_PROVIDES_INIT := true
+TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_RECOVERY_INITRC := device/samsung/galaxytab/recovery.rc
 
 TARGET_BOARD_PLATFORM := s5pc110
@@ -63,15 +63,17 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 
 # WiFi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
+CONFIG_DRIVER_WEXT := true
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
-BOARD_WLAN_DEVICE := bcm4329
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/dhd.ko"
-WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/etc/wifi/bcm4329_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt dhd_watchdog_ms=10 dhd_poll=1"
-WIFI_DRIVER_FW_PATH_AP := "/system/etc/wifi/bcm4329_aps.bin"
+BOARD_WLAN_DEVICE       := bcm4329
+WIFI_DRIVER_MODULE_NAME := "bcm4329"
+WIFI_DRIVER_MODULE_PATH := "/lib/modules/bcm4329.ko"
+WIFI_DRIVER_MODULE_ARG  := "firmware_path=/system/etc/wifi/bcm4329_sta.bin nvram_path=/system/etc/wifi/nvram_net.txt dhd_watchdog_ms=10 dhd_poll=1"
+WIFI_DRIVER_FW_PATH_AP  := "/system/etc/wifi/bcm4329_aps.bin"
 WIFI_DRIVER_FW_PATH_STA := "/system/etc/wifi/bcm4329_sta.bin"
-WIFI_DRIVER_MODULE_NAME := "dhd"
 BOARD_WEXT_NO_COMBO_SCAN := true
+BOARD_NETWORK_INTERFACES_DIR := "/sys/devices/virtual/net"
 
 # 3G
 BOARD_MOBILEDATA_INTERFACE_NAME := "pdp0"
@@ -97,7 +99,8 @@ BOARD_USE_SKIA_LCDTEXT := true
 BOARD_HAS_SDCARD_INTERNAL := true
 
 # Device related defines
-BOARD_NAND_PAGE_SIZE := 4096 -s 128
+BOARD_NAND_PAGE_SIZE := 4096
+BOARD_NAND_SPARE_SIZE := 128
 BOARD_KERNEL_BASE := 0x32000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_CMDLINE := console=ttyFIQ0,115200 init=/init no_console_suspend
@@ -112,10 +115,16 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
 
 # Recovery
+#BOARD_USE_CUSTOM_FONT := true
+#BOARD_XHDPI_RECOVERY := true
+TARGET_RECOVERY_PIXEL_FORMAT := "BGRX_8888"
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxytab/shbootimg.mk
-TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync;
+TARGET_RECOVERY_PRE_COMMAND := "echo 1 > /cache/.startrecovery; sync; echo "
+BOARD_CUSTOM_GRAPHICS := ../../../device/samsung/galaxytab/recovery/graphics.c
 
 TARGET_OTA_ASSERT_DEVICE := galaxytab,GT-P1000
+
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/usb_mass_storage/lun%d/file
 

@@ -18,17 +18,16 @@ DEVICE_PACKAGE_OVERLAYS := \
 # These are the hardware-specific configuration files
 PRODUCT_COPY_FILES := \
 	device/samsung/galaxytab/prebuilt/etc/asound.conf:system/etc/asound.conf \
-	device/samsung/galaxytab/prebuilt/lib/egl/egl.cfg:system/lib/egl/egl.cfg
+	device/samsung/galaxytab/prebuilt/lib/egl/egl.cfg:system/lib/egl/egl.cfg \
+	device/samsung/galaxytab/prebuilt/etc/bluetooth/main.conf:system/etc/bluetooth/main.conf
 
 # Init files
 PRODUCT_COPY_FILES += \
 	device/samsung/galaxytab/init.rc:root/init.rc \
-        device/samsung/galaxytab/init.smdkc110.rc:root/init.smdkc110.rc \
 	device/samsung/galaxytab/init.s5pc110.rc:root/init.s5pc110.rc \
 	device/samsung/galaxytab/init.s5pc110.usb.rc:root/init.s5pc110.usb.rc \
-	device/samsung/galaxytab/ueventd.s5pc110.rc:root/ueventd.s5pc110.rc \
+	device/samsung/galaxytab/ueventd.rc:root/ueventd.rc \
 	device/samsung/galaxytab/lpm.rc:root/lpm.rc
-
 
 # Prebuilt kl keymaps
 PRODUCT_COPY_FILES += \
@@ -43,9 +42,11 @@ PRODUCT_PACKAGES := \
 
 # Utilities
 PRODUCT_COPY_FILES += \
-    device/samsung/galaxytab/prebuilt/mke2fs:utilities/mke2fs \
-    device/samsung/galaxytab/prebuilt/redbend_ua:utilities/redbend_ua 
-# redbend_ua is a propreitary file, but we'll let it in here for now.
+    device/samsung/galaxytab/prebuilt/mke2fs:utilities/mke2fs
+
+# utils
+PRODUCT_PACKAGES += \
+	bmlwrite
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -59,8 +60,17 @@ PRODUCT_PACKAGES += \
 
 # Camera 
 PRODUCT_PACKAGES += \
-        camera.s5pc110 \
+	camera.s5pc110 \
 	libs3cjpeg
+
+# bluetooth
+PRODUCT_PACKAGES += \
+	bdaddr_read
+
+# tvout
+PRODUCT_PACKAGES += \
+	P1Parts \
+	tvouthack
 
 # These are the OpenMAX IL configuration files
 PRODUCT_COPY_FILES += \
@@ -69,16 +79,16 @@ PRODUCT_COPY_FILES += \
 
 # These are the OpenMAX IL modules
 PRODUCT_PACKAGES += \
-  libSEC_OMX_Core.s5pc110 \
-  libOMX.SEC.AVC.Decoder.s5pc110 \
-  libOMX.SEC.M4V.Decoder.s5pc110 \
-  libOMX.SEC.M4V.Encoder.s5pc110 \
-  libOMX.SEC.AVC.Encoder.s5pc110
+	libSEC_OMX_Core.s5pc110 \
+	libOMX.SEC.AVC.Decoder.s5pc110 \
+	libOMX.SEC.M4V.Decoder.s5pc110 \
+	libOMX.SEC.M4V.Encoder.s5pc110 \
+	libOMX.SEC.AVC.Encoder.s5pc110
 
 # Libs
 PRODUCT_PACKAGES += \
-  hwcomposer.s5pc110 \
-  libstagefrighthw
+	hwcomposer.s5pc110 \
+	libstagefrighthw
 
 # apns config file
 PRODUCT_COPY_FILES += \
@@ -93,85 +103,61 @@ PRODUCT_COPY_FILES += \
 	frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
 	frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
 	frameworks/base/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml \
-	frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
+	frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
         frameworks/base/data/etc/android.hardware.location.xml:system/etc/permissions/android.hardware.location.xml \
 	frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
 	frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+	frameworks/base/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
 	frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
 	frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
 	frameworks/base/data/etc/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
 	frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+	frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+	frameworks/base/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 	packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
 # vold
 PRODUCT_COPY_FILES += \
         device/samsung/galaxytab/prebuilt/etc/vold.fstab:system/etc/vold.fstab
 
-# Tablet!
+# firmware
+PRODUCT_COPY_FILES += \
+	device/samsung/galaxytab/prebuilt/firmware/CE147F00.bin:system/vendor/firmware/CE147F00.bin \
+	device/samsung/galaxytab/prebuilt/firmware/CE147F01.bin:system/vendor/firmware/CE147F01.bin \
+	device/samsung/galaxytab/prebuilt/firmware/CE147F02.bin:system/vendor/firmware/CE147F02.bin \
+	device/samsung/galaxytab/prebuilt/firmware/CE147F03.bin:system/vendor/firmware/CE147F03.bin
+
+# Credits
+PRODUCT_COPY_FILES += \
+	device/samsung/galaxytab/Credits-CM.html:system/etc/Credits-CM.html
+
+# Tablet
 PRODUCT_CHARACTERISTICS := tablet
 
-# stuff
+# RIL
 PRODUCT_PROPERTY_OVERRIDES += \
-       ro.telephony.call_ring.multiple=true \
-       ro.telephony.call_ring.delay=1000 \
+       ro.telephony.call_ring.multiple=false \
+       ro.telephony.call_ring.delay=3000 \
        ro.telephony.call_ring.absent=true \
-       ro.telephony.ril_class=samsung \
        mobiledata.interfaces=pdp0,eth0,gprs,ppp0 \
-       phone.ril.classname=com.android.internal.telephony.SamsungRIL \
-       ro.telephony.ril.v3=1 \
+       ro.telephony.ril.v3=datacall,icccardstatus \
+       ro.telephony.ril_class=SamsungRIL \
        ro.ril.enable.managed.roaming=1 \
        ro.ril.oem.nosim.ecclist=911,112,999,000,08,118,120,122,110,119,995 \
        ro.ril.emc.mode=2 \
        ro.sf.hwrotation=90 
 
-# camera
-PRODUCT_PROPERTY_OVERRIDES += \
-       ro.media.capture.maxres=8m \
-       ro.media.capture.fast.fps=4 \
-       ro.media.capture.slow.fps=120 \
-       ro.media.panorama.defres=3264x1840 \
-       ro.media.panorama.frameres=1280x720 \
-       ro.camcorder.videoModes=true \
-       ro.media.enc.jpeg.quality=95
-
-# network tweaks
-PRODUCT_PROPERTY_OVERRIDES += \
-       ro.ril.hep=1 \
-       ro.ril.enable.dtm=1 \
-       ro.ril.hsdpa.category=10 \
-       ro.ril.enable.a53=1 \
-       ro.ril.enable.3g.prefix=1 
-
-# UI tweeaks
-PRODUCT_PROPERTY_OVERRIDES += \
-       windowsmgr.max_events_per_sec=95 \
-       ro.min_pointer_dur=10
-
 # These are the hardware-specific settings that are stored in system properties.
 # Note that the only such settings should be the ones that are too low-level to
 # be reachable from resources or other mechanisms.
 PRODUCT_PROPERTY_OVERRIDES += \
-       wifi.supplicant_scan_interval=45 \
-       net.ipv4.tcp_ecn=0 \
-       net.ipv4.route.flush=1 \
-       net.ipv4.tcp_rfc1337=1 \
-       net.ipv4.ip_no_pmtu_disc=0 \
-       net.ipv4.tcp_sack=1 \
-       net.ipv4.tcp_fack=1 \
-       net.ipv4.tcp_window_scaling=1 \
-       net.ipv4.tcp_timestamps=1 \
-       net.ipv4.tcp_rmem=4096_39000_187000 \
-       net.ipv4.tcp_wmem=4096_39000_187000 \
-       net.ipv4.tcp_mem=187000_187000_187000 \
-       net.ipv4.tcp_no_metrics_save=1 \
-       net.ipv4.tcp_moderate_rcvbuf=1
+       wifi.supplicant_scan_interval=120
 
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector
 PRODUCT_PROPERTY_OVERRIDES += \
         ro.com.google.locationfeatures=1 \
-        ro.com.google.networklocation=1 \
-        ro.com.google.gmsversion=2.2_r5
+        ro.com.google.networklocation=1
 
 # Extended JNI checks
 # The extended JNI checks will cause the system to run more slowly, but they can spot a variety of nasty bugs 
@@ -179,15 +165,18 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Default=true for development builds, set by android buildsystem.
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.kernel.android.checkjni=0 \
-    dalvik.vm.checkjni=false \
-    dalvik.vm.execution-mode=int:jit
+    dalvik.vm.checkjni=false
+
+# Use dalvik-cache in /data (/cache is too small for system apps)
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.dexopt-data-only=1
 
 # we have enough storage space to hold precise GC data
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 # Set default USB interface
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp,adb
+	persist.sys.usb.config=mass_storage,adb
 
 # kernel modules for ramdisk
 PRODUCT_COPY_FILES += \
@@ -205,6 +194,10 @@ PRODUCT_COPY_FILES += $(foreach module,\
 PRODUCT_COPY_FILES += \
     device/samsung/galaxytab/prebuilt/sbin/fat.format:root/sbin/fat.format
 
+# wifi
+PRODUCT_COPY_FILES += \
+    device/samsung/galaxytab/prebuilt/etc/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+
 ifeq ($(TARGET_PREBUILT_KERNEL),)
     LOCAL_KERNEL := device/samsung/galaxytab/kernel
 else
@@ -213,11 +206,6 @@ endif
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
-
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-	make_ext4fs \
-	setup_fs
 
 # copy the filesystem converter
 PRODUCT_COPY_FILES += \
