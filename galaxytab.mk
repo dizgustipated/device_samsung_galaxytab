@@ -139,9 +139,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
        ro.telephony.call_ring.multiple=false \
        ro.telephony.call_ring.delay=3000 \
        ro.telephony.call_ring.absent=true \
+<<<<<<< HEAD
        mobiledata.interfaces=pdp0,eth0,gprs,ppp0 \
        ro.telephony.ril.v3=datacall,icccardstatus \
        ro.telephony.ril_class=SamsungRIL \
+=======
+       mobiledata.interfaces=eth0,pdp0 \
+       ro.telephony.ril.v3=datacall,icccardstatus \
+>>>>>>> 9272e2916ef93a2af558d90a31740f53fc025a1a
        ro.ril.enable.managed.roaming=1 \
        ro.ril.oem.nosim.ecclist=911,112,999,000,08,118,120,122,110,119,995 \
        ro.ril.emc.mode=2 \
@@ -151,7 +156,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Note that the only such settings should be the ones that are too low-level to
 # be reachable from resources or other mechanisms.
 PRODUCT_PROPERTY_OVERRIDES += \
+<<<<<<< HEAD
        wifi.supplicant_scan_interval=120
+=======
+       wifi.supplicant_scan_interval=45
+>>>>>>> 9272e2916ef93a2af558d90a31740f53fc025a1a
 
 # enable Google-specific location features,
 # like NetworkLocationProvider and LocationCollector

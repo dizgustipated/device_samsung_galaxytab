@@ -1,4 +1,9 @@
 # Copyright (C) 2010 The Android Open Source Project
+<<<<<<< HEAD
+=======
+# Copyright (C) 2011 dizgustipated <dizgustipated@gmail.com>
+# Copyright (C) 2011 Gerad Munsch <gmunsch@unforgivendevelopment.com>
+>>>>>>> 9272e2916ef93a2af558d90a31740f53fc025a1a
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

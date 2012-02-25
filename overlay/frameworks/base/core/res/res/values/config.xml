@@ -163,6 +163,8 @@
     <!-- If true, the screen can be rotated via the accelerometer in all 4
          rotations as the default behavior. -->
     <bool name="config_allowAllRotations">true</bool>
+    
+    <bool name="config_enableLockScreenRotation">true</bool>
 
     <!-- Component name of the service providing network location support. -->
     <string name="config_networkLocationProvider">com.google.android.location.NetworkLocationProvider</string>
@@ -197,8 +199,16 @@
          which typically is /data/data/com.android.providers.downloads/files -->
     <integer name="config_downloadDataDirSize">250</integer>
 
+<<<<<<< HEAD
     <!-- Max number of downloads allowed to proceed concurrently -->
     <integer name="config_MaxConcurrentDownloadsAllowed">10</integer>
+=======
+         Note: this flag is subtly different from the
+         PackageManager.FEATURE_TELEPHONY system feature, which is
+         available on *any* device with a telephony radio, even if the
+         device is data-only. -->
+    <bool name="config_voice_capable">false</bool>
+>>>>>>> 9272e2916ef93a2af558d90a31740f53fc025a1a
 
     <bool name="config_forceDisableHardwareKeyboard">true</bool>
 </resources>

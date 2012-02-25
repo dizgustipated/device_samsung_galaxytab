@@ -15,7 +15,7 @@ LOCAL_SRC_FILES:= \
 	SecCameraHWInterface.cpp \
 	SecCameraUtils.cpp
 
-LOCAL_SHARED_LIBRARIES:= libutils libcutils libbinder liblog libcamera_client libhardware
+LOCAL_SHARED_LIBRARIES:= libutils libcutils libbinder liblog libcamera_client libhardwareQLl
 LOCAL_SHARED_LIBRARIES+= libs3cjpeg
 
 LOCAL_MODULE := camera.s5pc110
@@ -25,3 +25,4 @@ LOCAL_MODULE_TAGS := optional
 include $(BUILD_SHARED_LIBRARY)
 
 endif
+l

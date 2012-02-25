@@ -12,6 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+<<<<<<< HEAD
+=======
+ifeq ($(TARGET_DEVICE),galaxytab)
+
+>>>>>>> 9272e2916ef93a2af558d90a31740f53fc025a1a
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
